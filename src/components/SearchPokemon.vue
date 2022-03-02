@@ -2,6 +2,10 @@
   <div class="search">
     <h1>{{ msg }}</h1>
     <input type="text" v-model="term" @click="getPokemon" />
+    <div>
+      {{ result.name }}
+      <img :src="result.imgs" :alt="result.name" />
+    </div>
   </div>
 </template>
 
@@ -13,7 +17,7 @@ export default {
   },
   data() {
     return {
-      term: "charmander",
+      term: "",
       result: {
         name: String,
         imgs: [],
@@ -31,6 +35,8 @@ export default {
         .then((data) => {
           console.log(data);
           console.log(data.name);
+          this.result.name = data.name;
+          this.result.imgs = data.sprites.front_shiny;
           console.log("bfgbfgbfb");
         });
     },
