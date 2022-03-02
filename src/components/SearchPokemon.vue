@@ -27,12 +27,10 @@ export default {
   methods: {
     getPokemon() {
       fetch(`https://pokeapi.co/api/v2/pokemon/${this.term}`)
-        .then((response) => {
-          response.json();
-          console.log(response);
-        })
+        .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          console.log(data.name);
           console.log("bfgbfgbfb");
         });
     },
