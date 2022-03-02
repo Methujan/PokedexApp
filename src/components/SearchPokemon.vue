@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <h1>{{ msg }}</h1>
-    <input type="text" v-model="term" />
+    <input type="text" v-model="term" @click="getPokemon" />
   </div>
 </template>
 
@@ -13,7 +13,7 @@ export default {
   },
   data() {
     return {
-      term: "",
+      term: "charmander",
       result: {
         name: String,
         imgs: [],
@@ -26,12 +26,14 @@ export default {
   },
   methods: {
     getPokemon() {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${this.getTerm}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${this.term}`)
         .then((response) => {
           response.json();
+          console.log(response);
         })
         .then((data) => {
           console.log(data);
+          console.log("bfgbfgbfb");
         });
     },
   },
