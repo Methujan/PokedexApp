@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/pngwing.com.png" />
-    <SearchPokemon msg="Welcome to Your Vue.js App" />
+    <SearchPokemon msg="Enter a Pokemon" />
   </div>
 </template>
 

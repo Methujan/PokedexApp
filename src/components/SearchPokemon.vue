@@ -3,8 +3,11 @@
     <h1>{{ msg }}</h1>
     <input type="text" v-model="term" @click="getPokemon" />
     <div>
-      {{ result.name }}
       <img :src="result.imgs" :alt="result.name" />
+      {{ result.name }}
+      <template v-for="ability in result.abilities">
+        {{ ability }}
+      </template>
     </div>
   </div>
 </template>
@@ -19,10 +22,10 @@ export default {
     return {
       term: "",
       result: {
-        name: String,
+        name: "",
         imgs: [],
-        height: Number,
-        weight: Number,
+        height: null,
+        weight: null,
         abilities: [],
         types: [],
       },
@@ -37,7 +40,13 @@ export default {
           console.log(data.name);
           this.result.name = data.name;
           this.result.imgs = data.sprites.front_shiny;
-          console.log("bfgbfgbfb");
+          this.result.height = data.height;
+          this.result.weight = data.weight;
+          data.abilities.forEach((ability) => {
+            this.result.abilities.push(ability.name);
+            console.log("ability", ability.ability.name);
+            console.log("abilityreslt", this.results.abilities);
+          });
         });
     },
   },
