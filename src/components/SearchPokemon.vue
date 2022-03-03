@@ -1,12 +1,24 @@
 <template>
   <div class="search">
     <h1>{{ msg }}</h1>
-    <input type="text" v-model="term" @click="getPokemon" />
-    <div>
+    <input type="text" v-model="term" />
+    <button type="submit" @click="getPokemon">Search</button>
+    <div class="pokemonResults">
       <img :src="result.imgs" :alt="result.name" />
-      {{ result.name }}
-      <template v-for="ability in result.abilities">
-        {{ ability }}
+      <h3>
+        {{ result.name }}
+      </h3>
+      <template v-for="ability in result.abilities" :key="ability">
+        <h5>
+          {{ ability }}
+        </h5>
+      </template>
+      <template v-for="type in result.types" :key="type">
+        <div class="pokemonTypes">
+          <h5>
+            {{ type }}
+          </h5>
+        </div>
       </template>
     </div>
   </div>
@@ -20,7 +32,7 @@ export default {
   },
   data() {
     return {
-      term: "",
+      term: null,
       result: {
         name: "",
         imgs: [],
@@ -32,20 +44,22 @@ export default {
     };
   },
   methods: {
+    capitalizeFirstLetter(string) {
+      return string.charAt(0).toUpperCase() + string.slice(1);
+    },
     getPokemon() {
       fetch(`https://pokeapi.co/api/v2/pokemon/${this.term}`)
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
-          console.log(data.name);
-          this.result.name = data.name;
+          this.result.name = this.capitalizeFirstLetter(data.name);
           this.result.imgs = data.sprites.front_shiny;
+          data.types.forEach((typedata) => {
+            this.result.types.push(typedata.type.name);
+          });
           this.result.height = data.height;
           this.result.weight = data.weight;
           data.abilities.forEach((ability) => {
-            this.result.abilities.push(ability.name);
-            console.log("ability", ability.ability.name);
-            console.log("abilityreslt", this.results.abilities);
+            this.result.abilities.push(ability.ability.name);
           });
         });
     },
@@ -55,9 +69,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
 ul {
   list-style-type: none;
   padding: 0;
@@ -68,5 +79,16 @@ li {
 }
 a {
   color: #42b983;
+}
+
+.pokemonResults {
+  background: khaki;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pokemonTypes {
+  border: 10px;
 }
 </style>
