@@ -1,6 +1,6 @@
 <template>
   <div class="pokemonList">
-    <template> <p>yeeeah</p></template>
+    <p>yeeeah</p>
   </div>
 </template>
 
@@ -23,14 +23,14 @@ export default {
           console.log(data);
         });
     },
-    mounted() {
-      console.log(this.currentURL);
-      this.getPokemonData();
-    },
-    created() {
-      console.log(this.currentURL);
-      this.currentURL = this.dataURL;
-    },
+  },
+  mounted() {
+    console.log(this.currentURL);
+    this.getPokemonData();
+  },
+  created() {
+    console.log(this.currentURL);
+    this.currentURL = this.dataURL;
   },
 };
 </script>
