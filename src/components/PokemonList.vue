@@ -2,6 +2,9 @@
   <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.url">
     <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
     {{ pokemon.name }}
+    <div class="types" v-for="(type, index) in pokemon.types" :key="index">
+      {{ type.type.name }}
+    </div>
   </div>
 </template>
 
