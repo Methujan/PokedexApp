@@ -1,5 +1,6 @@
 <template>
   <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.url">
+    <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
     {{ pokemon.name }}
   </div>
 </template>
@@ -16,20 +17,27 @@ export default {
     };
   },
   methods: {
-    getPokemonData() {
+    getAllPokemonData() {
       fetch(this.currentURL)
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           data.results.forEach((pokemon) => {
-            console.log(pokemon);
-            this.pokemons.push(pokemon);
+            this.getEachPokemonData(pokemon);
           });
         });
     },
+    getEachPokemonData(pokemon) {
+      let url = pokemon.url;
+      fetch(url)
+        .then((res) => res.json())
+        .then((pokemonData) => {
+          this.pokemons.push(pokemonData);
+        });
+      console.log(this.pokemons);
+    },
   },
   mounted() {
-    this.getPokemonData();
+    this.getAllPokemonData();
   },
   created() {
     this.currentURL = this.dataURL;
