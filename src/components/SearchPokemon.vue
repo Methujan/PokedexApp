@@ -1,26 +1,8 @@
 <template>
   <div class="search">
     <h1>{{ msg }}</h1>
-    <input type="text" v-model="term" />
+    <input type="text" />
     <button type="submit" @click="getPokemon">Search</button>
-    <div class="pokemonResults">
-      <img :src="result.imgs" :alt="result.name" />
-      <h3>
-        {{ result.name }}
-      </h3>
-      <template v-for="ability in result.abilities" :key="ability">
-        <h5>
-          {{ ability }}
-        </h5>
-      </template>
-      <template v-for="type in result.types" :key="type">
-        <div class="pokemonTypes">
-          <h5>
-            {{ type }}
-          </h5>
-        </div>
-      </template>
-    </div>
   </div>
 </template>
 
@@ -32,15 +14,7 @@ export default {
   },
   data() {
     return {
-      term: null,
-      result: {
-        name: "",
-        imgs: [],
-        height: null,
-        weight: null,
-        abilities: [],
-        types: [],
-      },
+      queryResult: "",
     };
   },
   methods: {
@@ -48,7 +22,7 @@ export default {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
     getPokemon() {
-      fetch(`https://pokeapi.co/api/v2/pokemon/${this.term}`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/`)
         .then((response) => response.json())
         .then((data) => {
           this.result.name = this.capitalizeFirstLetter(data.name);
