@@ -7,6 +7,10 @@
     <div class="types" v-for="(type, index) in pokemon.types" :key="index">
       {{ type.type.name }}
     </div>
+    <div class="stats" v-for="(stat, index) in pokemon.stats" :key="index">
+      {{ stat.base_stat }}
+      {{ stat.stat.name }}
+    </div>
   </div>
 </template>
 
@@ -54,9 +58,14 @@ export default {
 <style scoped>
 * {
   background-color: khaki;
+  border-radius: 10px;
 }
 .pokemonList {
   display: flex;
   align-items: center;
+}
+
+.pokemonName {
+  padding-right: 7vw;
 }
 </style>
