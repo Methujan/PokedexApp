@@ -9,7 +9,7 @@
 <script>
 // @ is an alias to /src
 import SearchPokemon from "@/components/SearchPokemon.vue";
-import PokemonList from "@/components/SearchPokemon.vue";
+import PokemonList from "@/components/PokemonList.vue";
 
 export default {
   name: "HomeView",
@@ -17,7 +17,7 @@ export default {
     SearchPokemon,
     PokemonList,
   },
-  data: () => {
+  data() {
     return {
       dataURL: "https://pokeapi.co/api/v2/pokemon/",
     };

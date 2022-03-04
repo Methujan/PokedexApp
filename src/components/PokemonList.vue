@@ -1,13 +1,14 @@
 <template>
   <div class="pokemonList">
-    <template> </template>
+    <template> <p>yeeeah</p></template>
   </div>
 </template>
 
 <script>
 export default {
+  name: "PokemonList",
   props: ["dataURL"],
-  data: () => {
+  data() {
     return {
       pokemons: [],
       nextURL: "",
@@ -23,9 +24,11 @@ export default {
         });
     },
     mounted() {
+      console.log(this.currentURL);
       this.getPokemonData();
     },
     created() {
+      console.log(this.currentURL);
       this.currentURL = this.dataURL;
     },
   },
