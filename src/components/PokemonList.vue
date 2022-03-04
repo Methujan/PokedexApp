@@ -1,7 +1,9 @@
 <template>
   <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.url">
     <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
-    {{ pokemon.name }}
+    <div class="pokemonName">
+      {{ pokemon.name }}
+    </div>
     <div class="types" v-for="(type, index) in pokemon.types" :key="index">
       {{ type.type.name }}
     </div>
@@ -55,7 +57,6 @@ export default {
 }
 .pokemonList {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 </style>
