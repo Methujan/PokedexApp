@@ -1,6 +1,6 @@
 <template>
-  <div class="pokemonList">
-    <p>yeeeah</p>
+  <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.url">
+    {{ pokemon.name }}
   </div>
 </template>
 
