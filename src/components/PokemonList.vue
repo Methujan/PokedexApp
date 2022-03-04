@@ -21,15 +21,17 @@ export default {
         .then((res) => res.json())
         .then((data) => {
           console.log(data);
+          data.results.forEach((pokemon) => {
+            console.log(pokemon);
+            this.pokemons.push(pokemon);
+          });
         });
     },
   },
   mounted() {
-    console.log(this.currentURL);
     this.getPokemonData();
   },
   created() {
-    console.log(this.currentURL);
     this.currentURL = this.dataURL;
   },
 };
