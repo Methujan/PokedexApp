@@ -42,19 +42,12 @@ export default {
         .then((pokemonData) => {
           if (pokemonData.name) {
             this.capitalizeFirstLetter(pokemonData, "name");
-            // pokemonData.name =
-            //   pokemonData.name.charAt(0).toUpperCase() +
-            //   pokemonData.name.slice(1);
-            console.log(pokemonData.name);
           }
           this.pokemons.push(pokemonData);
         });
     },
     capitalizeFirstLetter(data, key) {
-      console.log(key, typeof key);
-      console.log(data[key]);
       data[key] = data[key].charAt(0).toUpperCase() + data[key].slice(1);
-      console.log("datakey", data[key]);
       return data[key];
     },
   },
