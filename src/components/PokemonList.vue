@@ -1,5 +1,5 @@
 <template>
-  <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.url">
+  <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.name">
     <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
     <div class="pokemonName">
       {{ pokemon.name }}
@@ -37,12 +37,31 @@ export default {
     },
     getEachPokemonData(pokemon) {
       let url = pokemon.url;
+      console.log(url);
       fetch(url)
         .then((res) => res.json())
         .then((pokemonData) => {
+          if (pokemonData.name) {
+            // newPokemonData = this.capitalizeFirstLetter(pokemonData);
+            pokemonData.name =
+              pokemonData.name.charAt(0).toUpperCase() +
+              pokemonData.name.slice(1);
+            console.log(
+              pokemonData.name.charAt(0).toUpperCase() +
+                pokemonData.name.slice(1)
+            );
+            // console.log("newPokeo", newPokemonData);
+            console.log("pokemon", pokemonData.name);
+          }
           this.pokemons.push(pokemonData);
+          console.log(pokemonData);
         });
-      console.log(this.pokemons);
+    },
+    capitalizeFirstLetter(obj) {
+      // console.log(obj.name.charAt(0).toUpperCase() + obj.name.slice(1));
+      const newObj = obj;
+      newObj.name.charAt(0).toUpperCase() + newObj.name.slice(1);
+      return newObj;
     },
   },
   mounted() {
