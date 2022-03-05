@@ -37,31 +37,25 @@ export default {
     },
     getEachPokemonData(pokemon) {
       let url = pokemon.url;
-      console.log(url);
       fetch(url)
         .then((res) => res.json())
         .then((pokemonData) => {
           if (pokemonData.name) {
-            // newPokemonData = this.capitalizeFirstLetter(pokemonData);
-            pokemonData.name =
-              pokemonData.name.charAt(0).toUpperCase() +
-              pokemonData.name.slice(1);
-            console.log(
-              pokemonData.name.charAt(0).toUpperCase() +
-                pokemonData.name.slice(1)
-            );
-            // console.log("newPokeo", newPokemonData);
-            console.log("pokemon", pokemonData.name);
+            this.capitalizeFirstLetter(pokemonData, "name");
+            // pokemonData.name =
+            //   pokemonData.name.charAt(0).toUpperCase() +
+            //   pokemonData.name.slice(1);
+            console.log(pokemonData.name);
           }
           this.pokemons.push(pokemonData);
-          console.log(pokemonData);
         });
     },
-    capitalizeFirstLetter(obj) {
-      // console.log(obj.name.charAt(0).toUpperCase() + obj.name.slice(1));
-      const newObj = obj;
-      newObj.name.charAt(0).toUpperCase() + newObj.name.slice(1);
-      return newObj;
+    capitalizeFirstLetter(data, key) {
+      console.log(key, typeof key);
+      console.log(data[key]);
+      data[key] = data[key].charAt(0).toUpperCase() + data[key].slice(1);
+      console.log("datakey", data[key]);
+      return data[key];
     },
   },
   mounted() {
