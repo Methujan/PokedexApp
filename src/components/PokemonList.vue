@@ -1,17 +1,33 @@
 <template>
-  <div class="pokemonList" v-for="pokemon in pokemons" :key="pokemon.name">
-    <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
-    <div class="pokemonName">
-      {{ pokemon.name }}
-    </div>
-    <div class="types" v-for="(type, index) in pokemon.types" :key="index">
-      {{ type.type.name }}
-    </div>
-    <div class="stats" v-for="(stat, index) in pokemon.stats" :key="index">
-      {{ stat.base_stat }}
-      {{ stat.stat.name }}
-    </div>
-  </div>
+  <v-container
+    class="pokemonList"
+    v-for="pokemon in pokemons"
+    :key="pokemon.name"
+  >
+    <v-row>
+      <v-col>
+        <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
+      </v-col>
+      <v-col class="pokemonName mr-3">
+        {{ pokemon.name }}
+      </v-col>
+      <v-col
+        class="pokemonTypes"
+        v-for="(type, index) in pokemon.types"
+        :key="index"
+      >
+        {{ type.type.name }}
+      </v-col>
+      <v-col
+        class="pokemonStats"
+        v-for="(stat, index) in pokemon.stats"
+        :key="index"
+      >
+        {{ stat.base_stat }}
+        {{ stat.stat.name }}
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
@@ -76,12 +92,22 @@ export default {
   background-color: khaki;
   border-radius: 10px;
 }
+
 .pokemonList {
   display: flex;
   align-items: center;
 }
+.pokemonList > * {
+  /* flex: 1;
+  flex-basis: 25%; */
+}
 
 .pokemonName {
-  padding-right: 7vw;
+  padding-right: 5vw;
+}
+.pokemonStats {
+  /* padding-left: 10vw; */
+  /* display: flex;
+  justify-content: space-between; */
 }
 </style>
