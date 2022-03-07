@@ -12,7 +12,7 @@
         {{ pokemon.name }}
       </v-col>
       <v-col
-        class="pokemonTypes"
+        class="pokemonTypes pr-3"
         v-for="(type, index) in pokemon.types"
         :key="index"
       >
@@ -90,7 +90,6 @@ export default {
 <style scoped>
 * {
   background-color: khaki;
-  border-radius: 10px;
 }
 
 .pokemonList {
@@ -103,11 +102,9 @@ export default {
 }
 
 .pokemonName {
-  padding-right: 5vw;
+  /* padding-right: 5vw; */
 }
 .pokemonStats {
-  /* padding-left: 10vw; */
-  /* display: flex;
-  justify-content: space-between; */
+  /* padding-left: 1vw; */
 }
 </style>
