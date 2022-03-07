@@ -1,18 +1,14 @@
 <template>
-  <v-container
-    class="pokemonList"
-    v-for="pokemon in pokemons"
-    :key="pokemon.name"
-  >
-    <v-row>
+  <v-card v-for="pokemon in pokemons" :key="pokemon.name">
+    <v-row class="pokemonList">
       <v-col>
         <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
       </v-col>
-      <v-col class="pokemonName mr-3">
+      <v-col class="pokemonName">
         {{ pokemon.name }}
       </v-col>
       <v-col
-        class="pokemonTypes pr-3"
+        class="pokemonTypes"
         v-for="(type, index) in pokemon.types"
         :key="index"
       >
@@ -27,7 +23,7 @@
         {{ stat.stat.name }}
       </v-col>
     </v-row>
-  </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -95,16 +91,13 @@ export default {
 .pokemonList {
   display: flex;
   align-items: center;
-}
-.pokemonList > * {
-  /* flex: 1;
-  flex-basis: 25%; */
+  justify-content: space-evenly;
 }
 
 .pokemonName {
-  /* padding-right: 5vw; */
+  /* padding: auto; */
 }
 .pokemonStats {
-  /* padding-left: 1vw; */
+  /* padding: auto; */
 }
 </style>
