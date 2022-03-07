@@ -1,5 +1,8 @@
 <template>
   <v-card v-for="pokemon in pokemons" :key="pokemon.name">
+    <v-row>
+      <v-col></v-col>
+    </v-row>
     <v-row class="pokemonList">
       <v-col>
         <img :src="pokemon.sprites.front_default" alt="pokemon.name" />
@@ -7,13 +10,21 @@
       <v-col class="pokemonName">
         {{ pokemon.name }}
       </v-col>
-      <v-col
-        class="pokemonTypes"
-        v-for="(type, index) in pokemon.types"
-        :key="index"
-      >
-        {{ type.type.name }}
-      </v-col>
+      <div v-if="pokemon.types.length > 1">
+        <v-col
+          class="pokemonTypes"
+          v-for="(type, index) in pokemon.types"
+          :key="index"
+        >
+          <p>
+            {{ type.type.name }}
+          </p>
+        </v-col>
+      </div>
+      <div v-if="pokemon.types.length == 1">
+        <v-col> {{ pokemon.types[0].type.name }}</v-col>
+      </div>
+
       <v-col
         class="pokemonStats"
         v-for="(stat, index) in pokemon.stats"
@@ -57,12 +68,18 @@ export default {
           }
           if (pokemonData.types) {
             pokemonData.types.forEach((type) => {
-              console.log([type]);
               type.type.name =
                 type.type.name.charAt(0).toUpperCase() +
                 type.type.name.slice(1);
-              console.log(type);
               // this.capitalizeFirstLetter(pokemonData, [types][type][type]);
+            });
+          }
+          if (pokemonData.stats.base_stat) {
+            console.log(pokemonData.stats.base_stat);
+            pokemonData.stats.forEach((stat) => {
+              stat.base_stat =
+                stat.base_stat.charAt(0).toUpperCase() +
+                stat.base_stat.slice(1);
             });
           }
           this.pokemons.push(pokemonData);
@@ -78,6 +95,7 @@ export default {
   },
   created() {
     this.currentURL = this.dataURL;
+    console.log(this.pokemons);
   },
 };
 </script>
