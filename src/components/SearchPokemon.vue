@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <h1>{{ msg }}</h1>
-    <input type="text" />
+    <input type="text" v-model="query" />
     <button type="submit" @click="getPokemon">Search</button>
   </div>
 </template>
@@ -14,7 +14,9 @@ export default {
   },
   data() {
     return {
-      queryResult: "",
+      results: { name: "", imgs: "" },
+      pokemon: [],
+      query: "",
     };
   },
   methods: {
@@ -22,19 +24,23 @@ export default {
       return string.charAt(0).toUpperCase() + string.slice(1);
     },
     getPokemon() {
-      fetch(`https://pokeapi.co/api/v2/pokemon/`)
+      fetch(`https://pokeapi.co/api/v2/pokemon/${this.query}`)
         .then((response) => response.json())
         .then((data) => {
-          this.result.name = this.capitalizeFirstLetter(data.name);
-          this.result.imgs = data.sprites.front_shiny;
-          data.types.forEach((typedata) => {
-            this.result.types.push(typedata.type.name);
-          });
-          this.result.height = data.height;
-          this.result.weight = data.weight;
-          data.abilities.forEach((ability) => {
-            this.result.abilities.push(ability.ability.name);
-          });
+          console.log(data);
+          this.pokemon = [];
+          this.pokemon.push(data);
+          console.log(this.pokemon);
+          // this.result.name = data.name;
+          // this.result.imgs = data.sprites.front_shiny;
+          // data.types.forEach((typedata) => {
+          //   this.result.types.push(typedata.type.name);
+          // });
+          // this.result.height = data.height;
+          // this.result.weight = data.weight;
+          // data.abilities.forEach((ability) => {
+          //   this.result.abilities.push(ability.ability.name);
+          // });
         });
     },
   },
