@@ -1,4 +1,5 @@
 <template>
+  <PokemonCard v-if="showDetail" :pokemon="pokemon" />
   <div class="search">
     <h1>{{ msg }}</h1>
     <input type="text" v-model="query" />
@@ -7,16 +8,21 @@
 </template>
 
 <script>
+import PokemonCard from "@/components/PokemonCard.vue";
 export default {
   name: "SearchPokemon",
   props: {
     msg: String,
+  },
+  components: {
+    PokemonCard,
   },
   data() {
     return {
       results: { name: "", imgs: "" },
       pokemon: [],
       query: "",
+      showDetail: false,
     };
   },
   methods: {
@@ -27,6 +33,7 @@ export default {
       fetch(`https://pokeapi.co/api/v2/pokemon/${this.query}`)
         .then((response) => response.json())
         .then((data) => {
+          this.showDetail = true;
           console.log(data);
           this.pokemon = [];
           this.pokemon.push(data);
