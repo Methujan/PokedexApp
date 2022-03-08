@@ -1,7 +1,12 @@
 <template>
   <div class="detail">
     <v-card class="detailView" v-if="show">
-      {{ pokemon[0].name }}
+      <div>
+        {{ pokemon[0].name }}
+      </div>
+      <div v-for="type in pokemon[0].types" :key="type">
+        {{ type.type.name }}
+      </div>
       <button @click="closeDetails">Close / Fechar</button>
     </v-card>
   </div>
