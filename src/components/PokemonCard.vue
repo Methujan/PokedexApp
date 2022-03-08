@@ -2,6 +2,9 @@
   <div class="detail">
     <v-card class="detailView" v-if="show">
       <div>
+        <img :src="pokemon[0].sprites.front_default" alt="pokemon.name" />
+      </div>
+      <div>
         {{ pokemon[0].name }}
       </div>
       <div v-for="type in pokemon[0].types" :key="type">
