@@ -56,7 +56,6 @@ export default {
     },
     closeDetails() {
       this.showDetail = false;
-      console.log("yeyeyeye");
     },
   },
 };
