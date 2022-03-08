@@ -10,6 +10,9 @@
       <div v-for="type in pokemon[0].types" :key="type">
         {{ type.type.name }}
       </div>
+      <div v-for="ability in pokemon[0].abilities" :key="ability">
+        {{ ability.ability.name }}
+      </div>
       <button @click="closeDetails">Close / Fechar</button>
     </v-card>
   </div>
