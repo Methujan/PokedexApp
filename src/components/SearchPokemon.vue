@@ -1,5 +1,9 @@
 <template>
-  <PokemonCard v-if="showDetail" :pokemon="pokemon" />
+  <PokemonCard
+    v-if="showDetail"
+    :pokemon="pokemon"
+    @closeDetails="closeDetails"
+  />
   <div class="search">
     <h1>{{ msg }}</h1>
     <input type="text" v-model="query" />
@@ -49,6 +53,10 @@ export default {
           //   this.result.abilities.push(ability.ability.name);
           // });
         });
+    },
+    closeDetails() {
+      this.showDetail = false;
+      console.log("yeyeyeye");
     },
   },
 };

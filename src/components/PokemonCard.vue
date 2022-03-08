@@ -1,5 +1,8 @@
 <template>
-  <p>heyy</p>
+  <v-card v-if="show">
+    {{ pokemon[0].name }}
+    <button @click="closeDetails">Close / Fechar</button>
+  </v-card>
   <!-- <v-card v-for="pokemon in pokemons" :key="pokemon.name">
     <v-row>
       <v-col></v-col>
@@ -45,12 +48,17 @@ export default {
   data() {
     return {
       pokemons: [],
+      show: true,
     };
   },
   methods: {
     capitalizeFirstLetter(data, key) {
       data[key] = data[key].charAt(0).toUpperCase() + data[key].slice(1);
       return data[key];
+    },
+    closeDetails() {
+      console.log("CLOSEE");
+      this.$emit("closeDetails");
     },
   },
 };
